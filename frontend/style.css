@@ -1,12 +1,15 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
-
+/* Sagis Brand Colors */
 :root {
-    --primary-color: #2563eb;
-    --bg-color: #f3f4f6;
+    --primary-color: #58ab40;
+    /* Sagis Green */
+    --secondary-color: #9bc56d;
+    /* Light Green */
+    --text-primary: #53575b;
+    /* Sagis Gray */
+    --bg-color: #f8f9fa;
     --card-bg: #ffffff;
-    --text-primary: #1f2937;
-    --text-secondary: #6b7280;
-    --border-color: #e5e7eb;
+    --text-secondary: #6c757d;
+    --border-color: #e9ecef;
     --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
     --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 
@@ -28,86 +31,105 @@ body {
     background-color: var(--bg-color);
     color: var(--text-primary);
     margin: 0;
-    padding: 40px 20px;
+    padding: 0;
+    /* Full width header */
     line-height: 1.5;
 }
 
 .container {
     max-width: 1100px;
-    margin: 0 auto;
+    margin: 40px auto;
     background: var(--card-bg);
-    padding: 32px;
-    border-radius: 16px;
+    padding: 40px;
+    border-radius: 12px;
     box-shadow: var(--shadow-md);
+    border-top: 6px solid var(--primary-color);
+    /* Brand accent */
 }
 
+/* Header & Logo */
 header {
-    margin-bottom: 32px;
+    margin-bottom: 40px;
     text-align: center;
+}
+
+.brand-logo {
+    height: 60px;
+    /* Adjust size */
+    margin-bottom: 16px;
+    max-width: 100%;
 }
 
 header h1 {
     color: var(--text-primary);
-    font-weight: 700;
-    font-size: 2rem;
+    font-weight: 600;
+    font-size: 1.5rem;
     margin: 0;
+    letter-spacing: -0.025em;
 }
 
+/* Controls */
 .controls {
     margin-bottom: 24px;
     display: flex;
     gap: 12px;
     justify-content: flex-end;
-    /* Align controls to right for cleaner look */
 }
 
-input[type="text"] {
+input[type="text"],
+select {
     padding: 10px 16px;
     border: 1px solid var(--border-color);
-    border-radius: 8px;
-    width: 300px;
+    border-radius: 6px;
+    min-width: 200px;
     font-size: 0.95rem;
-    transition: border-color 0.15s ease;
+    font-family: inherit;
+    background-color: white;
+    color: var(--text-primary);
+    transition: all 0.2s ease;
 }
 
-input[type="text"]:focus {
+input[type="text"]:focus,
+select:focus {
     outline: none;
     border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    box-shadow: 0 0 0 3px rgba(88, 171, 64, 0.2);
+    /* Green glow */
 }
 
 button {
-    padding: 10px 20px;
+    padding: 10px 24px;
     border: none;
     background-color: var(--primary-color);
     color: white;
-    border-radius: 8px;
+    border-radius: 6px;
     cursor: pointer;
-    font-weight: 500;
+    font-weight: 600;
     font-size: 0.95rem;
     transition: background-color 0.15s ease;
 }
 
 button:hover {
-    background-color: #1d4ed8;
+    background-color: #4a9434;
+    /* Darker Green */
 }
 
 button#resetBtn {
     background-color: white;
-    color: var(--text-secondary);
+    color: var(--text-primary);
     border: 1px solid var(--border-color);
 }
 
 button#resetBtn:hover {
-    background-color: #f9fafb;
-    border-color: #d1d5db;
+    background-color: #f8f9fa;
+    border-color: #dde0e3;
+    color: #000;
 }
 
-/* Table Styling */
+/* Table */
 table {
     width: 100%;
     border-collapse: separate;
-    /* Allows border radius on rows */
     border-spacing: 0;
     margin-top: 20px;
 }
@@ -117,14 +139,14 @@ th {
     padding: 16px;
     color: var(--text-secondary);
     font-weight: 600;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     text-transform: uppercase;
     letter-spacing: 0.05em;
     border-bottom: 2px solid var(--border-color);
 }
 
 td {
-    padding: 16px;
+    padding: 18px 16px;
     border-bottom: 1px solid var(--border-color);
     font-size: 0.95rem;
 }
@@ -134,10 +156,10 @@ tr:last-child td {
 }
 
 tr:hover td {
-    background-color: #f9fafb;
+    background-color: #f8f9fa;
 }
 
-/* Badges & Tags */
+/* Badges */
 .badge {
     display: inline-flex;
     align-items: center;
@@ -173,33 +195,32 @@ tr:hover td {
     color: var(--status-cancelled-text);
 }
 
+/* Source Tags */
 .source-tag {
     display: inline-flex;
     align-items: center;
-    gap: 6px;
+    gap: 8px;
     font-weight: 500;
+    font-size: 0.9rem;
     color: var(--text-secondary);
 }
 
-/* Icons for systems */
 .system-icon {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
+    width: 10px;
+    height: 10px;
+    border-radius: 2px;
+    /* Slight rounded square for tech feel */
 }
 
 .system-a .system-icon {
-    background-color: #ec4899;
-    box-shadow: 0 0 0 2px #fce7f3;
+    background-color: var(--primary-color);
+    opacity: 0.8;
 }
 
-/* Pink/Redish */
 .system-b .system-icon {
-    background-color: #8b5cf6;
-    box-shadow: 0 0 0 2px #ede9fe;
+    background-color: var(--text-primary);
+    opacity: 0.8;
 }
-
-/* Purple */
 
 #errorMsg {
     color: #b91c1c;
@@ -213,29 +234,4 @@ tr:hover td {
 
 .hidden {
     display: none;
-}/* Existing styles... */
-
-/* Update input/button styles to include select */
-input[type="text"],
-select {
-    padding: 10px 16px;
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-    min-width: 200px;
-    /* Reduced width slightly */
-    font-size: 0.95rem;
-    font-family: inherit;
-    /* Inherit Inter font */
-    background-color: white;
-    cursor: pointer;
-    transition: border-color 0.15s ease;
 }
-
-input[type="text"]:focus,
-select:focus {
-    outline: none;
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
-}
-
-/* ... rest of CSS */

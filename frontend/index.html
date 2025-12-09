@@ -19,6 +19,9 @@
         </header>
 
         <section class="controls">
+            <div class="search-wrapper">
+                <input type="text" id="textSearch" placeholder="Search Order ID or Customer...">
+            </div>
             <select id="statusFilter">
                 <option value="">All Statuses</option>
                 <option value="Pending">Pending</option>
@@ -27,7 +30,6 @@
                 <option value="Completed">Completed</option>
                 <option value="Cancelled">Cancelled</option>
             </select>
-            <!-- Search button removed as change event is smoother, but keeping reset -->
             <button id="resetBtn">Reset</button>
         </section>
 

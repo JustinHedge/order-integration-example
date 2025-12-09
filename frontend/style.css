@@ -234,4 +234,23 @@ tr:hover td {
 
 .hidden {
     display: none;
+}/* Search Wrapper */
+.search-wrapper {
+    flex-grow: 1;
+    /* Take up available space */
+}
+
+.search-wrapper input {
+    width: 100%;
+    box-sizing: border-box;
+    /* Ensure padding doesn't affect width */
+    min-width: unset;
+    /* Override previous min-width */
+}
+
+/* Ensure controls align nicely */
+.controls {
+    justify-content: space-between;
+    /* Spread out search and filters */
+    align-items: center;
 }

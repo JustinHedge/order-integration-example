@@ -5,6 +5,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const resetBtn = document.getElementById('resetBtn');
     const errorMsg = document.getElementById('errorMsg');
 
+    const textSearch = document.getElementById('textSearch');
+
+    // store all fetched orders to allow client-side filtering
+    let allOrders = [];
+
     function showError(message) {
         if (errorMsg) {
             errorMsg.textContent = message;
@@ -20,9 +25,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     async function fetchOrders(status = '') {
         hideError();
-        tableBody.innerHTML = '<tr><td colspan="6" style="text-align:center;">Loading...</td></tr>';
+        tableBody.innerHTML = '<tr><td colspan="6" style="text-align:center; padding: 32px; color: var(--text-secondary);">Loading...</td></tr>';
 
         try {
+            // check if we are searching for a specific ID via backend
+            // but getting all is easier for client-side filtering of both ID and Name
             let url = '/api/orders';
             if (status) {
                 // use search endpoint if status is provided, or query param on list endpoint
@@ -36,14 +43,30 @@ document.addEventListener('DOMContentLoaded', () => {
                 throw new Error(errData.message || 'Failed to fetch orders');
             }
 
-            const orders = await response.json();
-            renderOrders(orders);
+            allOrders = await response.json();
+            applyFilters(); // filter and render
         } catch (error) {
             console.error('Error:', error);
             tableBody.innerHTML = '';
             showError(`Error loading data: ${error.message}`);
         }
     }
+
+    // specific function to filtering results based on inputs
+    function applyFilters() {
+        const statusVal = statusFilter.value.toLowerCase();
+        const textVal = textSearch.value.trim().toLowerCase();
+
+        const filtered = allOrders.filter(order => {
+            const matchesText = textVal === '' ||
+                order.orderId.toLowerCase().includes(textVal) ||
+                order.customerName.toLowerCase().includes(textVal);
+            return matchesText;
+        });
+
+        renderOrders(filtered);
+    }
+
 
     function renderOrders(orders) {
         tableBody.innerHTML = '';
@@ -86,9 +109,15 @@ document.addEventListener('DOMContentLoaded', () => {
         fetchOrders(val);
     });
 
+    // Instant Text Search
+    textSearch.addEventListener('input', () => {
+        applyFilters();
+    });
+
     resetBtn.addEventListener('click', () => {
         statusFilter.value = '';
-        fetchOrders();
+        textSearch.value = ''; // clear text
+        fetchOrders(); // reload all
     });
 
     // initial load

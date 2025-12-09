@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     const tableBody = document.querySelector('#ordersTable tbody');
     const statusFilter = document.getElementById('statusFilter');
-    const searchBtn = document.getElementById('searchBtn');
+    // const searchBtn = document.getElementById('searchBtn'); // switched to select vs. open text search (more intuitive ;)
     const resetBtn = document.getElementById('resetBtn');
     const errorMsg = document.getElementById('errorMsg');
 
@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
         orders.forEach(order => {
             const row = document.createElement('tr');
 
-            // Determine styles
+            // determine styles
             const systemClass = order.sourceSystem === 'SystemA' ? 'system-a' : 'system-b';
             const statusLower = order.status.toLowerCase();
             const statusClass = `status-${statusLower}`;
@@ -80,22 +80,15 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // event listeners
-    searchBtn.addEventListener('click', () => {
-        const val = statusFilter.value.trim();
+    // trigger search immediately on dropdown change
+    statusFilter.addEventListener('change', () => {
+        const val = statusFilter.value;
         fetchOrders(val);
     });
 
     resetBtn.addEventListener('click', () => {
         statusFilter.value = '';
         fetchOrders();
-    });
-
-    // enter key support
-    statusFilter.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') {
-            const val = statusFilter.value.trim();
-            fetchOrders(val);
-        }
     });
 
     // initial load

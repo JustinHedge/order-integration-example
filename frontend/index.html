@@ -15,8 +15,15 @@
         </header>
 
         <section class="controls">
-            <input type="text" id="statusFilter" placeholder="Filter by status (e.g., Pending)...">
-            <button id="searchBtn">Search</button>
+            <select id="statusFilter">
+                <option value="">All Statuses</option>
+                <option value="Pending">Pending</option>
+                <option value="Processing">Processing</option>
+                <option value="Shipped">Shipped</option>
+                <option value="Completed">Completed</option>
+                <option value="Cancelled">Cancelled</option>
+            </select>
+            <!-- Search button removed as change event is smoother, but keeping reset -->
             <button id="resetBtn">Reset</button>
         </section>
 
